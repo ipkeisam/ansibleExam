@@ -1,0 +1,26 @@
+* Specifying an executable file as the inventory is considered a dynamic inventory
+
+* JSON output is expected to be returned to STDOUT from the executable
+
+* The implementation (python, java, C, bash, etc) does not matter as long as the program can run on the control host and behaves as Ansible expects
+
+* The program/script must respond to two possible parameters:
+  * --list
+  * --host [hostname]
+
+The program script must return JSON in the format Ansible is expecting
+
+* Do not forget to make the file executable:
+  * chmod +x dynamic.py
+
+* Using dynamic inventories, you can pull inventory information from the likes of:
+  * A cloud provider
+  * LDAP
+  * Cobbler
+  * Other CMDB software
+
+* Some Popular Options
+  * AWS EC2
+  * Rackspace
+  * OpenStack
+  * Plenty of documentation available

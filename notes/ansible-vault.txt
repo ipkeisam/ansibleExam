@@ -1,0 +1,20 @@
+# Encrypt sensitive data such as passwords or keys
+# This can include "group_vars/" or "host_vars"
+
+# Creating Encrypted Files
+ansible-vault create host_vars/server1
+
+# Editing Encrypted Files
+ansible-vault edit host_vars/server1
+
+# Change the password of a file
+ansible-vault rekey host_vars/server1
+
+# Encrypting Unencrypted Files
+ansible-vault encrypt host_vars/server1
+
+# Decrypting Encrypted Files
+ansible-vault decrypt host_vars/server1
+
+# Viewing Encrypted Files
+ansible-vault view host_vars/server1

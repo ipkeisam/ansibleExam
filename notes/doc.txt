@@ -1,0 +1,8 @@
+#List all modules available
+ansible-doc -l
+
+#Help for a specific module and examples
+ansible-doc <module>
+ansible-doc file
+ansible-doc copy
+

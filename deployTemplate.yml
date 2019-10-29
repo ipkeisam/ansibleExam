@@ -1,0 +1,7 @@
+---
+- hosts: labservers 
+  tasks:
+  - name: deploy net file
+    template:
+        src: template/network.j2
+        dest: /home/ansible/network.txt

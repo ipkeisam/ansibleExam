@@ -1,0 +1,19 @@
+---
+- hosts: multi
+  become: yes
+  tasks:
+    
+    - name: create index.html
+      file:
+        path: /var/www/index.html
+        state: touch
+        owner: apache
+        group: apache
+        mode: 0750
+
+    - name: edit index
+      lineinfile:
+        path: /var/www/index.html
+        line: "I'm back!!"
+      when:
+        - ansible_hostname == "server2"

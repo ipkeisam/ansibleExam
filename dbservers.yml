@@ -1,0 +1,28 @@
+---
+ - name: Configuracao do banco de dados
+   hosts: dbservers
+   become: true
+   tasks:
+           - name: install mariadb server
+             yum: 
+                name: mariadb-server 
+                state: present
+           
+           - name: ensure mariadb started
+             service: 
+                name: mariadb.service 
+                state: started 
+                enabled: yes
+
+           - name: ensure mariadb listening on all ports
+             lineinfile: 
+                dest: /etc/my.cnf 
+                regexp: ^bind-address 
+                line: "bind-address = 0.0.0.0"
+             notify: restart mariadb-server
+   
+   handlers:
+            - name: restart mariadb-server
+              service: 
+                name: mariadb.service 
+                state: restarted

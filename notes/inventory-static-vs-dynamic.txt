@@ -1,0 +1,9 @@
+Static:
+* INI or YAML format
+* Maintained by hand
+* Easy to manage for static configuration
+
+Dynamic:
+* Executable (bash script, python script, etc.)
+* Script returns JSON containing inventory information
+* Good for use with cloud resources subject to sudden change

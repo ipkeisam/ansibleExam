@@ -1,0 +1,18 @@
+Ansible Galaxy is essentially a large public repository of Ansible roles.
+
+Roles ship with readmes detailing role use and available variables
+
+Galaxy contains a large number of roles that are constantly evolving and increasing
+
+Galaxy can use git allowing for other role sources such as GitHub
+
+
+## Init a role mysql
+ansible-galaxy init mysql
+
+## Install a role
+ansible-galaxy install elastic.elasticsearch
+- /etc/ansible/roles
+
+## Remove a role
+ansible-galaxy remove elastic.elasticsearch

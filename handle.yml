@@ -1,0 +1,26 @@
+---
+- hosts: labservers
+  become: yes
+  handlers:
+    - name: restart apache
+      service:
+          name: httpd
+          state: restarted
+      listen: "restart web"
+
+  tasks:
+    - name: create dir "/opt/www"
+      file:
+          path: /opt/www
+          state: directory
+          mode: 0755
+          owner: apache
+          group: apache
+ 
+   - name: change config
+      replace:
+          path: /etc/httpd/conf/httpd.conf
+          regexp: '^DocumentRoot.*$'
+          replace: 'DocumentRoot "/opt/www/"'
+          backup: yes
+      notify: "restart apache"

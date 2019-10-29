@@ -1,0 +1,12 @@
+#Loop with_items
+---
+- hosts: labservers
+  become: yes
+  tasks:
+    - name: create users
+      user:
+        name: "{{item}}"
+      with_items:
+        - sam
+        - jhon
+        - bob

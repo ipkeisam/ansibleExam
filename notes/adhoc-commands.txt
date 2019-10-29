@@ -1,0 +1,21 @@
+### yum
+#Install elinks via adhoc command
+ansible dbservers -i inv.ini -b -m yum -a "name=elinks state=latest"
+
+#Uninstall elinks via adhoc command
+ansible dbservers -i inv.ini -b -m yum -a "name=elinks state=absent"
+
+### file
+ansible dbservers -i inv.ini -m file -a "path=/home/ansible/newfile state=touch"
+ansible dbservers -i inv.ini -m file -a "path=/home/ansible/newfile mode=0400"
+ansible dbservers -b -i inv.ini -m file -a "path=/home/ansible/newfile owner=root"
+
+
+### user
+ansible dbservers -i inv.ini -b -m user -a "name=san"
+ansible dbservers -i inv.ini -b -m user -a "name=san append=yes groups=wheel"
+
+
+### Variables
+ansible server1 -i inv.ini -a "ls -ld {{opt_dir}}"
+ansible multi -i inv.ini -b -a "tail {{logs}}"

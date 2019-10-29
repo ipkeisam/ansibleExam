@@ -1,0 +1,52 @@
+- Overview
+   1 Know how to work with commonly used Ansible modules
+   2 Create playbooks to configure systems to a specific state
+   3 Use variables to retrieve the results of running commands
+   4 Use conditionals to control play execution
+   5 Configure error handling
+   6 Selectively run specified tasks in playbooks using tags
+
+   1 - Common Modules
+   * Core modules to be familiar with:
+	* Working with files: copy, archive, unarchive, get_url
+ 	* user, group
+	* ping
+	* service
+	* yum
+   * Lineinfile module
+   * htpasswd
+   * Shell and command modules
+   * Script module
+   * Debug module
+   * See http://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+
+   2 - Create playbooks to configure systems to a specific state
+   * Reviewing plays and playbooks:
+	* Plays map a group of host to well-defined roles
+	* Playbooks are used to orchestrate more complex activities, such as system or application deployment
+   * Brush up on YAML
+   * Basic Syntax
+   * Idempotency (Capacidade de alterar somente o necessário)
+   * Pro tips:
+	* Retry
+	* Limit
+	* Watch out for spaces
+
+   3 - Use variables to retrieve the results of running commands
+   * The register keyword
+   * May be referenced within the play
+   
+   4 - Use conditionals to control play execution
+   * when
+   * with_items
+   * with_files
+   
+   5 - Configure error handling
+   * Ignoring acceptable errors
+   * Defining failure conditions
+   * Defining "Changed"
+   * Blocks
+
+   6 - Selectively run specified tasks in playbooks using tags
+   * How Ansible uses tags
+

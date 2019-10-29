@@ -1,0 +1,11 @@
+* It is possible to control the number of hosts acted upon at once time by Ansible
+
+* The Ansible process will create forks to execute actions in parallel
+
+* By default, the process will only fork 5 times
+
+* The number of forks can be set for a single command using -f flag with either the ansible or ansible-playbook commands.
+
+* The default may be changed in ansible.cfg
+
+* The 'serial' keyword may also confine the number of simultaneous updates within a playbook

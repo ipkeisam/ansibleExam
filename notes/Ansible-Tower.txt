@@ -1,0 +1,9 @@
+* Ansible Tower provides a web server interface to ansible
+
+* System requirements are somewhat heavy
+
+* Tower is only free form minimal use. Working with more than a few systems requires a paid license
+
+* The two key benefits of Ansible Tower are user permissioning and the audit trail (only provided with license)
+
+* Only touched on in EX407 exam

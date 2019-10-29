@@ -1,0 +1,21 @@
+---
+- hosts: labservers
+
+  vars:
+    inv_file: /home/ansible/vars/inv.txt
+
+  tasks:
+  - name: create dir var
+    file:
+      path: /home/ansible/vars
+      state: directory
+
+  - name: create file
+    file:
+      path: "{{ inv_file }}"
+      state: touch
+
+  - name: generate inventory
+    lineinfile:
+      path: "{{ inv_file }}"
+      line: "{{ groups['multi']|join(' ') }}"

@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  vars_files:
+    - vault/secure
+  tasks:
+  - name: Output message
+    shell: echo {{ message }} > vault/deployed.txt

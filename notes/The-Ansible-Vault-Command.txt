@@ -1,0 +1,11 @@
+* The 'ansible-vault' command allows file encryption, and requires a password to unencrypt
+
+* Command: ansible-vault encrypt <file>
+
+* The 'ansible-vault rekey' command will allow you to re-encrypt a file and reset the password.
+
+* To supply the vault password during play execution, you must use either of the '--ask-vault-password' or 'ask-vault-file' flags.
+
+* Ansible 2.4 introduces the '--vault-id' feature
+
+* It is also possible to set 'no_log' within a module to censor sensitive log output

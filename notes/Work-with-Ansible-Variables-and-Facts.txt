@@ -1,0 +1,62 @@
+Overview
+1 - Ansible variables
+2 - Dictionary variables
+3 - Magic variables and filters
+4 - What are facts?
+5 - How to use facts
+6 - Facts.d - custom facts
+
+
+1 - Ansible variables
+* Review on naming convetion and quotes
+* Some more places to define variables:
+  * vars, var_files and var_prompt
+  * Commandline: ansible-playook play.yml -e '{"myVar":"myValue","anotherVar":"anotherValue"}'
+  * Roles, blocks, and inventories
+* Essential variable use:
+  * - debug: msg="Look! I'm using my variable {{ myVar }}!"
+* A note on quotes:
+  * name:"{{ package }}"
+
+
+
+
+2 - Dictionary variables
+* Yaml formatting allows for python style dictionaries to be used as variables
+	employee:
+	   name: bob
+	   id: 42
+* There are two formats to access dictionary values:
+	* employee['name']
+	* employee.name
+* The bracket syntax is safer as the dot notation can have collisions with python in certain circumstances
+
+
+3 - Magic variables and filters
+* Ansible defines several special variables knowns as magic variables
+* You can use the variable 'hostvars' to look at facts about the other hosts in the inventory
+	- {{ hostvars['node1']['ansible_distribution'] }}
+* There is also a 'groups' variable that provides inventory information
+	- {{ groups['webservers'] }}
+* Jinja2 filters can be useful in manipulating text format
+	- see: http://jinja.pocoo.org/docs/2.10/templates/#builtin-filters
+	{{ groups['webservers']|join(' ') }}
+
+4 - What are facts?
+* Facts are information discovered by Ansible about a target system
+* There are two ways facts are collected:
+	* Using the setup module with an ad-hoc command: ansible all -m setup
+	* Facts are gathered by default when a playbook is executed
+* Fact gathering in playbooks may be disabled using the gather_facts attribute
+
+5 - How to use facts
+* Any collected facts, they may accessed through variables:
+	- {{ ansible_default_ipv4.address }}
+* It is possible to use filters with regex, in ad-hoc mode, to match certain fact names
+	- ansible labservers -m setup -a "filter=*ipv4*"
+* Facts may also be used with conditionals to have plays behave differently on hosts that meet certain criteria
+
+6 - Facts.d - custom facts
+* It is possible to define custom facts on your servers using the facts.d directory
+* Create /etc/ansible/facts.d directory on target system. All valid files within this directory ending in .fact are returned under ansible_local with facts
+* Fact files may be INI, JSON, or an executable that returns JSON

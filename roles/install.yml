@@ -1,0 +1,7 @@
+---
+- hosts: labservers
+  become: yes
+  roles:
+    - apache
+  vars:
+    apache_server_admin: role-admin@example.com

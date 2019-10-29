@@ -1,0 +1,8 @@
+* Ansible recommends that variables not be defined in inventory files:
+	- Should be stored in YAML files located relative to inventory file
+	- group_vars
+	- host_vars
+
+* Files named host or group and may end in yml or yaml
+	- group_vars/[group_name]
+	- host_vars/[host_name]

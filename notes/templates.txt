@@ -1,0 +1,25 @@
+Overview
+1 Template basics
+2 Template module
+3 Template file
+
+
+1 - Template basics
+  * Templates give the ability to provide a skeletal file that can be dinamically completed using variables
+  * The most common templates use case is configuration file management
+  * Templates are generally used by providing a template file on the ansible control node, and then using the template module within you playbook to deploy the file to a target server or group
+  * Templates are processed using the Jinja2 template language 
+
+2 - Template module
+  * The template module is used to deploy template files
+  * There are two required parameters:
+     * src - the template to use (on the ansible control host)
+     * dest - where the resulting file should be located (on the target host)
+  * A useful optional parameter is 'validate' which requires a sucessful validation command to run against the result file prior to deployment
+  * It is also possible to set basic file using the template module
+
+
+3 - Template file
+  * Template files are essentially more than text files
+  * Template files are designated with a file extension of .j2
+  * Template files have access to the same variables that the play tha calls them does

@@ -1,0 +1,64 @@
+sample_role (directories)
+ - tasks
+ - handlers
+ - files
+ - templates
+ - vars
+ - defaults
+ - meta
+
+
+* tasks
+	- The tasks directory contain the main list of tasks to be executed by the role
+	- This directory must include a main.yml if that directory is being used. You can think of main.yml as the entry point for the tasks section of the role
+
+* vars
+	- The vars directory contains variables used within the role
+	- The varas directory is entered via a main.yml
+	- The vars directory is one of three primary ways to interact with variables within a role ( aside from conventional variable use such as inventory). The other two ways are using the defaults directory and passing parameters to the role
+	- The vars directory has the highest level of precedence. It will override inventory variable as well.
+	- The vars directory may only be overridden by passed via CLI
+
+* defaults
+	- The defaults directory contains default variables for the role
+	- The defaults directory is entered via a main.yml
+	- The defaults directory is one of three primary ways to interact with variables within a role ( aside from conventional variable use such as inventory). The other two ways are using the vars directory and passing parameters to the role
+	- The defaults directory has the lowest level of precedence
+	- The defaults directory is only meant to provide a value to a variable if no other value is given
+
+*******
+Variables defined within a role (using the defaults or vars directories) may be accessed across roles
+You may still pass variables on the command line with the -e flag for use in a role. (These variables override all others in term of precedents)
+
+Best practice dictates that you properly namespace your variables when working with a role to avoid conflicts
+*******
+
+* handlers
+	- The handlers directory contains handlers, which may be used by this role or even anywhere outside this role.
+	- The directory is entered via a main.yml within the directory
+	- Handlers are essentially tasks that may be flagged to run using the notify keyword
+	- The notify keyword will only flag the handler if a task block makes changes
+	- A handler will only be triggered once even if they are notified by multiple tasks
+
+
+* files
+	- The files directory contains files which can be deployed via this role
+	- Files within this directory may be referenced without path throughout the role
+	- Note this directory is for ordinary files (not var files or templates).
+
+* templates
+	- The templates directory contains templates which can be deployed via this role
+	- Templates within this directory may be referenced without a path throughout the role
+
+* meta
+	- The meta-directory defines certain meta data for the role
+	- Relevant meta data includes role dependencies and various role level configurations such as "allow_duplicates".
+	- The meta-directory is entered via a main.yml
+
+
+
+**** Netsting
+	- Roles may include other roles using the dependencies keyword
+	- Dependent roles are applied prior to the role dependent on them
+	- A role using the same paremeters will not be applied more than one time. This can cause complication with role dependencies;
+	- Having "allow_duplicates: true" defined in meta/main.yml within a role will allow the role o be applied more than once.
